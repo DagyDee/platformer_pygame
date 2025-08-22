@@ -16,6 +16,4 @@ class Game:
                     self.end()
             pygame.display.flip()
         pygame.quit()
-
-game = Game()
-game.run()
+        
