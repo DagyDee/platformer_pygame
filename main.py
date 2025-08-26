@@ -1,4 +1,5 @@
 from engine.game import Game
+from engine.media import Image
 import logging
 
 # nastavení loggeru
@@ -12,18 +13,21 @@ logging.basicConfig(
 )
 
 # vytvoříme pojmenovaný logger
-logger = logging.getLogger("Game")
+GameLogger = logging.getLogger("Main")
 
 def main():
-    game = Game()
+    Image.default_dir = 'res/imgs/'
+    game_size = (1366, 768)
+    game = Game(game_size[0], game_size[1], caption="Space Ground Adventure")
     game.run()
-    logger.info("The game_src was ended")
+    GameLogger.info("The game_src was ended")
+
 
 if __name__ == '__main__':
     try:
-        logger.info("Starting up!")
+        GameLogger.info("Starting up!")
         main()
     except KeyboardInterrupt:
-        logger.info("Shutting down because interrupted")
+        GameLogger.info("Shutting down because interrupted")
     except Exception:
-        logger.critical("A fatal error has occurred", exc_info=True)
+        GameLogger.critical("A fatal error has occurred", exc_info=True)
